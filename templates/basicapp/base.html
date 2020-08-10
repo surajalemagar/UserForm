@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css" integrity="sha384-VCmXjywReHh4PwowAiWNagnWcLhlEJLA5buUprzK8rxFgeH0kww/aWY76TfkUoSX" crossorigin="anonymous">
+</head>
+<body>
+    <div class="form-group">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand" href="{% url "base" %}">Home</a>
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                    <a class="nav-link" href="{% url "admin:index" %}">Admin</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url "basicapp:index" %}">Index</a>
+                    <li class="nav-item active">
+                    <a class="nav-link" href="{% url "basicapp:registration" %}">Register</a>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url "logout" %}">Logout</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url "login" %}">Login</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+    </div>
+        <div class="container">
+            {% block body_block %}
+            <div class="jumbotron">
+                <h1>Welcome To Home Page!!!</h1>
+            </div>
+            {% endblock %}
+        </div>
+</body>
+</html>
